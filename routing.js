@@ -31,3 +31,51 @@ app.all('/info',(req,res,next)=>{
     console.log('access all info')
     next() //pass control tho next handler
 })
+
+/*
+Route Parameters:
+Route parameters are named URL segments that are used to capture the values specified at their position in the URL.
+
+Route path: /users/:userId/books/:bookId
+Request URL: http://localhost:3000/users/34/books/8989
+req.params: { "userId": "34", "bookId": "8989" }
+*/
+
+//Route handlers:
+/*
+You can provide multiple callback functions that behave like middleware to handle a request. The only
+exception is that these callbacks might invoke next('route') to bypass the remaining route callbacks. 
+*/
+//multiple handler functions
+const cb0 = function (req, res, next) {
+    console.log('CB0')
+    next()
+  }
+  
+  const cb1 = function (req, res, next) {
+    console.log('CB1')
+    next()
+  }
+  
+  const cb2 = function (req, res) {
+    res.send('Hello from C!')
+  }
+  
+  app.get('/example/c', [cb0, cb1, cb2])
+//A combination of independent functions and arrays of functions can handle a route. For example:
+  const cb01 = function (req, res, next) {
+    console.log('CB0')
+    next()
+  }
+  
+  const cb11 = function (req, res, next) {
+    console.log('CB1')
+    next()
+  }
+  
+  app.get('/example/d', [cb01, cb11], (req, res, next) => {
+    console.log('the response will be sent by the next function ...')
+    next()
+  }, (req, res) => {
+    res.send('Hello from D!')
+  })
