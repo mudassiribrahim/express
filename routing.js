@@ -12,3 +12,16 @@ const app = express();
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
+
+/*
+Route Methods:
+A route methods is derived from one of the HTTP methods and is attached to an instance of the express class
+*/
+// Get method route 
+app.get('/about', (req, res) => {
+    res.send('About Page');
+});
+// Post method route
+app.post('/contact', (req, res) => {
+    res.send('Contact Page');
+});
