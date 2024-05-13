@@ -28,3 +28,16 @@ let responseText = 'hello world';
 responseText += `request time: ${req.requestTime}`;
 res.send(responseText);
 })
+// middelWare function validateCookies 
+async function validateCookies(req, res, next) {
+    try {
+        if (req.cookies.validate === 'true') {
+            next();
+        } else {
+            res.send('Cookie validation failed');
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+app.use(validateCookies);
