@@ -25,3 +25,9 @@ app.get('/about', (req, res) => {
 app.post('/contact', (req, res) => {
     res.send('Contact Page');
 });
+
+// Express supports methods that correspond all HTTP methods.
+app.all('/info',(req,res,next)=>{
+    console.log('access all info')
+    next() //pass control tho next handler
+})
