@@ -5,7 +5,7 @@ Middlewares are functions that are executed between the request and the response
 import express from 'express';
 const app = express();
 
-//Auth MiddelWare function 
+//Auth middleWare function 
 const auth = function (req, res, next) {
     console.log('Auth');
     next();
@@ -28,7 +28,7 @@ let responseText = 'hello world';
 responseText += `request time: ${req.requestTime}`;
 res.send(responseText);
 })
-// middelWare function validateCookies 
+// middleWare function validateCookies 
 async function validateCookies(req, res, next) {
     try {
         if (req.cookies.validate === 'true') {
